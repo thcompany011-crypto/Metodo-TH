@@ -3,48 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Master Check - Método TH</title>
+    <title>Master Check PRO - Método TH</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <div class="app-container">
+    <div class="app-shell">
         <section id="login-screen" class="screen active">
-            <div class="login-viewport">
-                <div class="brand-header">
-                    <i class="fas fa-rocket"></i>
-                    <h1>Método TH</h1>
-                    <p>Escala Brasil 360°</p>
+            <div class="login-wrapper">
+                <div class="brand-section">
+                    <div class="logo-icon"><i data-lucide="shield-check"></i></div>
+                    <h1>MÉTODO TH</h1>
+                    <p>Inteligência em Vendas & Logística</p>
                 </div>
-                <div class="login-card">
-                    <label>E-mail de Aluno Kiwify</label>
-                    <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
-                    <button class="btn-login" onclick="checkAccess()">Desbloquear App <i class="fas fa-lock-open"></i></button>
+                <div class="glass-card login-card">
+                    <label>Acesso do Aluno</label>
+                    <input type="email" id="user-email" placeholder="E-mail da Kiwify">
+                    <button class="btn-primary" onclick="checkAccess()">
+                        Desbloquear Ferramentas <i data-lucide="chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
         <main id="main-app" class="screen">
-            <header class="top-bar">
-                <div class="badge-active"><i class="fas fa-check-circle"></i> SISTEMA ATIVO</div>
-                <div class="app-name">MASTER CHECK PRO</div>
+            <header class="app-header">
+                <div class="header-status">
+                    <span class="pulse-dot"></span>
+                    SISTEMA ATIVO
+                </div>
+                <div class="header-title">MASTER CHECK PRO</div>
+                <div class="header-user"><i data-lucide="user-circle"></i></div>
             </header>
 
-            <div class="scroll-area">
-                <div id="tab-cep" class="tab-pane active">
-                    <div class="card main-card">
-                        <h3><i class="fas fa-map-marker-alt"></i> Triagem Logística</h3>
-                        <div class="search-box">
-                            <input type="text" id="cep-input" placeholder="00000-000">
-                            <button onclick="runCheck()"><i class="fas fa-search"></i></button>
+            <div class="app-body">
+                <div id="tab-cep" class="tab-content active">
+                    <div class="card search-card">
+                        <div class="card-title">
+                            <i data-lucide="map-pin"></i>
+                            <span>Triagem Logística</span>
                         </div>
-                        <div id="result-display" class="status-box"></div>
+                        <div class="search-field">
+                            <input type="text" id="cep-input" placeholder="00000-000 ou Endereço">
+                            <button onclick="runCheck()"><i data-lucide="search"></i></button>
+                        </div>
+                        <div id="result-display" class="result-badge"></div>
                     </div>
 
-                    <div id="dynamic-script-area" class="script-box-reveal">
-                        <div class="card script-card">
-                            <div class="card-head">
-                                <span><i class="fas fa-bolt"></i> Script de Fechamento</span>
+                    <div id="dynamic-script-area" class="reveal-animation">
+                        <div class="card script-response">
+                            <div class="script-header">
+                                <span><i data-lucide="message-square-plus"></i> Script de Fechamento</span>
                                 <button class="btn-copy-mini" onclick="copyDynamic()">Copiar</button>
                             </div>
                             <p id="script-text"></p>
@@ -52,38 +61,57 @@
                     </div>
                 </div>
 
-                <div id="tab-atendimento" class="tab-pane">
-                    <h3 class="page-title">Biblioteca de Scripts</h3>
-                    <div class="script-grid">
-                        <div class="script-item gold" onclick="copyToClipboard('kit4')">
-                            <b>BRINDE DUPLO (4 por 2)</b> <i class="fas fa-fire"></i>
+                <div id="tab-atendimento" class="tab-content">
+                    <div class="section-header">Scripts de Alta Conversão</div>
+                    <div class="script-stack">
+                        <div class="card script-item gold" onclick="copyToClipboard('kit4')">
+                            <div class="item-info">
+                                <b>BRINDE DUPLO (4 por 2)</b>
+                                <span>Aumentar Ticket Médio</span>
+                            </div>
+                            <i data-lucide="copy"></i>
                         </div>
-                        <div class="script-item" onclick="copyToClipboard('kit3')">
-                            <b>PAGUE 2 LEVE 3</b> <i class="fas fa-gift"></i>
+                        <div class="card script-item" onclick="copyToClipboard('kit3')">
+                            <div class="item-info">
+                                <b>PAGUE 2 LEVE 3</b>
+                                <span>Kit de Tratamento</span>
+                            </div>
+                            <i data-lucide="copy"></i>
                         </div>
                     </div>
                 </div>
 
-                <div id="tab-config" class="tab-pane">
-                    <h3 class="page-title">Estratégia FB Ads</h3>
+                <div id="tab-config" class="tab-content">
+                    <div class="section-header">Estratégia Facebook Ads</div>
                     <div class="card ads-card">
-                        <img src="img/print-anuncio.png" class="ads-img" alt="Configuração de Anúncio">
-                        <div class="ads-info">
-                            <p><i class="fas fa-user-friends"></i> Mulheres: 35-65+</p>
-                            <p><i class="fas fa-bullseye"></i> Campanha: Mensagens</p>
+                        <div class="ads-image-container">
+                             <img src="img/print-anuncio.png" alt="Anúncio" class="ads-img">
+                        </div>
+                        <div class="ads-details">
+                            <div class="detail-row"><i data-lucide="users"></i> <span>Mulheres: 35-65+</span></div>
+                            <div class="detail-row"><i data-lucide="target"></i> <span>Objetivo: Engajamento</span></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <nav class="nav-bar">
-                <button class="nav-link active" onclick="showTab('tab-cep', this)"><i class="fas fa-search"></i><span>Consultar</span></button>
-                <button class="nav-link" onclick="showTab('tab-atendimento', this)"><i class="fas fa-comments"></i><span>Scripts</span></button>
-                <button class="nav-link" onclick="showTab('tab-config', this)"><i class="fas fa-chart-line"></i><span>Anúncios</span></button>
+            <nav class="tab-nav">
+                <button class="nav-btn active" onclick="showTab('tab-cep', this)">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Consultar</span>
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-atendimento', this)">
+                    <i data-lucide="messages-square"></i>
+                    <span>Scripts</span>
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-config', this)">
+                    <i data-lucide="pie-chart"></i>
+                    <span>Estratégia</span>
+                </button>
             </nav>
         </main>
     </div>
     <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
-
