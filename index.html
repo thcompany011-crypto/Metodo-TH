@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Master Check PRO - Método TH</title>
@@ -16,10 +16,12 @@
                     <h1>MÉTODO TH</h1>
                     <p>Escala Brasil 360°</p>
                 </div>
-                <div class="glass-card login-card">
-                    <label>E-mail de Aluno Kiwify</label>
+                <div class="login-card">
+                    <label>Acesso do Aluno Kiwify</label>
                     <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
-                    <button class="btn-primary" onclick="checkAccess()">Desbloquear App <i data-lucide="chevron-right"></i></button>
+                    <button class="btn-primary" onclick="checkAccess()">
+                        Desbloquear App <i data-lucide="chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -32,7 +34,7 @@
             </header>
 
             <div class="app-body">
-                <div id="tab-cep" class="tab-content active">
+                <div id="tab-cep" class="tab-pane active">
                     <div class="card search-card">
                         <div class="card-title"><i data-lucide="map-pin"></i> <span>Triagem Logística</span></div>
                         <div class="search-field">
@@ -64,28 +66,30 @@
                                 </select>
                                 <input type="text" id="cust-obs" placeholder="Observações Extras">
                             </div>
-                            <button class="btn-primary" style="background: #333; margin-top: 15px;" onclick="copyFinalOrder()">
+                            <button class="btn-primary" style="background: #1f2937; margin-top: 15px;" onclick="copyFinalOrder()">
                                 <i data-lucide="copy"></i> Copiar Tudo para Logzz
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div id="tab-atendimento" class="tab-content">
-                    <div class="section-header">Scripts de Alta Conversão</div>
+                <div id="tab-atendimento" class="tab-pane">
+                    <div class="section-header">Biblioteca de Scripts</div>
                     <div class="card script-item gold" onclick="copyToClipboard('kit4')">
-                        <b>BRINDE DUPLO (4 por 2)</b> <i data-lucide="copy"></i>
+                        <div class="item-text"><b>BRINDE DUPLO (4 por 2)</b><span>Alta Conversão</span></div>
+                        <i data-lucide="copy"></i>
                     </div>
                     <div class="card script-item" onclick="copyToClipboard('kit3')">
-                        <b>PAGUE 2 LEVE 3</b> <i data-lucide="copy"></i>
+                        <div class="item-text"><b>PAGUE 2 LEVE 3</b><span>Tratamento Completo</span></div>
+                        <i data-lucide="copy"></i>
                     </div>
                 </div>
 
-                <div id="tab-config" class="tab-content">
+                <div id="tab-config" class="tab-pane">
                     <div class="section-header">Estratégia FB Ads</div>
                     <div class="card ads-card">
-                        <img src="img/print-anuncio.png" alt="Anúncio" class="ads-img">
-                        <div class="ads-details">
+                        <img src="img/print-anuncio.png" alt="Anúncio" class="ads-img" onerror="this.style.display='none'">
+                        <div class="ads-info">
                             <p><i data-lucide="users"></i> Mulheres: 35-65+</p>
                             <p><i data-lucide="target"></i> Objetivo: Engajamento</p>
                         </div>
@@ -94,7 +98,7 @@
             </div>
 
             <nav class="tab-nav">
-                <button class="nav-btn active" onclick="showTab('tab-cep', this)"><i data-lucide="layout-dashboard"></i><span>Consultar</span></button>
+                <button class="nav-btn active" onclick="showTab('tab-cep', this)"><i data-lucide="layout-dashboard"></i><span>Triagem</span></button>
                 <button class="nav-btn" onclick="showTab('tab-atendimento', this)"><i data-lucide="messages-square"></i><span>Scripts</span></button>
                 <button class="nav-btn" onclick="showTab('tab-config', this)"><i data-lucide="pie-chart"></i><span>Estratégia</span></button>
             </nav>
@@ -104,3 +108,4 @@
     <script>lucide.createIcons();</script>
 </body>
 </html>
+
