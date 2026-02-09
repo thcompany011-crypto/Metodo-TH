@@ -1,16 +1,33 @@
-:root { --primary: #00a859; --secondary: #ee2d2d; --bg: #f5f5f5; }
-body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; }
-.app-container { max-width: 480px; margin: auto; min-height: 100vh; background: white; position: relative; }
-.login-box { padding: 50px 20px; text-align: center; }
-.app-header { background: var(--primary); color: white; padding: 15px; text-align: center; font-weight: bold; }
-.tab-page { padding: 20px; display: none; }
-.tab-page.active { display: block; }
-input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-.btn-primary { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-.result-box { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; }
-.script-item { background: #f9f9f9; padding: 15px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); }
-.highlight { border-left-color: #ffcc00; background: #fffde7; }
-.btn-copy { background: #eee; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
-.bottom-nav { position: absolute; bottom: 0; width: 100%; display: flex; background: #fff; border-top: 1px solid #ddd; }
-.bottom-nav button { flex: 1; padding: 15px; border: none; background: none; font-size: 11px; font-weight: bold; }
+:root { --primary: #00a859; --secondary: #ee2d2d; --accent: #ffcc00; --dark: #1a1a1a; --gray: #f8f9fa; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #121212; margin: 0; padding: 0; overflow: hidden; }
+.app-viewport { max-width: 450px; margin: auto; height: 100vh; background: var(--gray); position: relative; display: flex; flex-direction: column; }
 
+/* Login Design */
+.login-container { padding: 40px 20px; text-align: center; }
+.brand h1 { margin: 10px 0 5px; color: var(--dark); font-size: 28px; }
+.login-card { background: white; padding: 30px 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 30px; }
+.btn-main { background: var(--primary); color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 15px rgba(0,168,89,0.3); }
+
+/* Header & Nav */
+.main-header { background: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 13px; border-bottom: 1px solid #eee; color: var(--dark); }
+.status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+.bottom-nav { background: white; height: 70px; display: flex; border-top: 1px solid #eee; padding-bottom: env(safe-area-inset-bottom); }
+.nav-btn { flex: 1; border: none; background: none; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #999; font-size: 10px; font-weight: bold; }
+.nav-btn i { font-size: 20px; margin-bottom: 4px; }
+.nav-btn.active { color: var(--primary); }
+
+/* Cards & Content */
+.content-area { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 90px; }
+.card { background: white; padding: 20px; border-radius: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 15px; }
+.search-group { display: flex; gap: 10px; margin: 15px 0; }
+.search-group input { flex: 1; padding: 12px; border: 1.5px solid #eee; border-radius: 10px; font-size: 16px; outline: none; }
+.btn-action { background: var(--dark); color: white; border: none; padding: 0 20px; border-radius: 10px; }
+.result-badge { padding: 12px; border-radius: 10px; font-size: 13px; font-weight: bold; text-align: center; display: none; }
+
+/* Script Cards */
+.script-card { background: #fffde7; border: 1px solid #fff59d; padding: 15px; border-radius: 15px; margin-top: 10px; }
+.script-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: bold; font-size: 12px; color: #856404; }
+.badge-copy { background: #ffcc00; color: #000; padding: 4px 10px; border-radius: 20px; font-size: 10px; cursor: pointer; }
+.script-box { background: white; padding: 18px; border-radius: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; }
+.script-box.gold { background: #fffde7; border-color: var(--accent); }
+.print-img { width: 100%; border-radius: 12px; margin-bottom: 15px; border: 1px solid #ddd; }
