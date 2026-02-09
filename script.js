@@ -12,7 +12,7 @@ function checkAccess() {
         document.getElementById('login-screen').classList.remove('active');
         document.getElementById('main-app').classList.add('active');
         lucide.createIcons();
-    } else { alert("Acesso negado!"); }
+    } else { alert("E-mail não autorizado!"); }
 }
 
 function runCheck() {
@@ -26,12 +26,12 @@ function runCheck() {
     badge.style.display = "block";
     area.style.display = "block";
 
-    if (cep.startsWith('7')) { // Logística Entregador
+    if (cep.startsWith('7')) { 
         badge.style.background = "#d1fae5"; badge.style.color = "#065f46";
         badge.innerHTML = "✅ STATUS: ENTREGADOR (Logzz)";
         text.innerText = scripts.logzz;
         logzzForm.style.display = "block";
-    } else { // Logística Correios
+    } else { 
         badge.style.background = "#fee2e2"; badge.style.color = "#991b1b";
         badge.innerHTML = "🚚 STATUS: CORREIOS (Braip)";
         text.innerText = scripts.braip;
@@ -55,7 +55,7 @@ function copyFinalOrder() {
 }
 
 function showTab(tabId, btn) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
     btn.classList.add('active');
@@ -64,10 +64,11 @@ function showTab(tabId, btn) {
 
 function copyDynamic() {
     navigator.clipboard.writeText(document.getElementById('script-text').innerText);
-    alert("Script de fechamento copiado!");
+    alert("Script copiado!");
 }
 
 function copyToClipboard(key) {
     navigator.clipboard.writeText(scripts[key]);
-    alert("Script do Kit copiado!");
+    alert("Script copiado!");
 }
+
