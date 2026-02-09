@@ -1,18 +1,18 @@
-const whitelist = ["teste@aluno.com", "alex@metodoth.com"];
+const whitelist = ["teste@aluno.com", "alex@metodoth.com"]; // Adiciona teu e-mail real aqui
 const scripts = {
-    logzz: "Ótima notícia! ✅ No seu endereço o motoboy entrega e você PAGA NA PORTA. Me confirme apenas o número da casa para eu agendar aqui!",
-    braip: "Para sua região o envio é via Correios com seguro total. 🚚 O pagamento é via Pix ou Cartão para liberação do rastreio oficial. Me passe seu melhor e-mail!",
+    logzz: "Ótima notícia! ✅ No seu endereço o motoboy entrega e você PAGA NA PORTA...",
+    braip: "Para sua região o envio é via Correios com seguro total. 🚚 O pagamento é via Pix...",
     kit3: "Pague 2 e leve 3! Você garante o tratamento completo e o 3º frasco é PRESENTE meu. 🎁",
-    kit4: "OFERTA RELÂMPAGO: 4 Frascos pelo preço de 2! 🚀 Você leva 4 meses de tratamento e paga apenas 2. Posso reservar?"
+    kit4: "OFERTA RELÂMPAGO: 4 Frascos pelo preço de 2! 🚀 Você leva 4 meses de tratamento..."
 };
 
 function checkAccess() {
-    const email = document.getElementById('user-email').value;
-    if (whitelist.includes(email.toLowerCase())) {
+    const email = document.getElementById('user-email').value.toLowerCase();
+    if (whitelist.includes(email)) {
         document.getElementById('login-screen').classList.remove('active');
-        document.getElementById('main-app').style.display = 'flex';
+        document.getElementById('main-app').classList.add('active');
         history.pushState({ page: 'main' }, "", "");
-    } else { alert("Acesso negado! Use o e-mail da Kiwify."); }
+    } else { alert("E-mail não autorizado!"); }
 }
 
 function runCheck() {
@@ -23,30 +23,28 @@ function runCheck() {
 
     if (!cep) return;
     badge.style.display = "block";
+    area.style.display = "block";
 
     if (cep.startsWith('7')) {
         badge.style.background = "#d4edda"; badge.style.color = "#155724";
-        badge.innerHTML = "✅ LOGZZ: Pagamento na Entrega";
+        badge.innerHTML = "✅ STATUS: LOGZZ (Motoboy)";
         text.innerText = scripts.logzz;
     } else {
         badge.style.background = "#f8d7da"; badge.style.color = "#721c24";
-        badge.innerHTML = "🚚 BRAIP: Envio via Correios";
+        badge.innerHTML = "🚚 STATUS: BRAIP (Nacional)";
         text.innerText = scripts.braip;
     }
-    area.style.display = "block";
 }
 
 function showTab(tabId, btn) {
     document.querySelectorAll('.tab-pane').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
     btn.classList.add('active');
-    history.pushState({ page: tabId }, "", "");
 }
 
 function copyDynamic() {
-    const text = document.getElementById('script-text').innerText;
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(document.getElementById('script-text').innerText);
     alert("Script copiado!");
 }
 
@@ -54,6 +52,3 @@ function copyToClipboard(key) {
     navigator.clipboard.writeText(scripts[key]);
     alert("Script copiado!");
 }
-
-window.onpopstate = function(e) { location.reload(); };
-
