@@ -1,50 +1,64 @@
-// LISTA DE TESTE
 const whitelist = ["teste@aluno.com", "alex@metodoth.com"];
-
 const scripts = {
-    kit3: "Consegui validar! Você paga 2 frascos e o 3º é POR MINHA CONTA...",
-    kit4: "OLHA QUE OPORTUNIDADE: Consegui liberar agora 4 FRASCOS PELO PREÇO DE 2...",
-    logzz: "Ótima notícia! No seu endereço o motoboy entrega e você PAGA NA PORTA...",
-    braip: "Para sua região o envio é via Correios com seguro total..."
+    logzz: "Ótima notícia! ✅ No seu endereço o motoboy entrega e você PAGA NA PORTA. Me confirme apenas o número da casa para eu agendar aqui!",
+    braip: "Para sua região o envio é via Correios com seguro total. 🚚 O pagamento é via Pix ou Cartão para liberação imediata do código de rastreio oficial. Me passe seu melhor e-mail!",
+    kit3: "Pague 2 e leve 3! Você garante o tratamento completo e o 3º frasco é PRESENTE meu. 🎁",
+    kit4: "OFERTA RELÂMPAGO: 4 Frascos pelo preço de 2! 🚀 Você leva 4 meses de tratamento e paga apenas 2. Posso reservar?"
 };
-
-// --- NOVA LÓGICA DE NAVEGAÇÃO ---
 
 function checkAccess() {
     const email = document.getElementById('user-email').value;
-    if (whitelist.includes(email)) {
+    if (whitelist.includes(email.toLowerCase())) {
         document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('main-app').style.display = 'block';
-        // Cria um marco no histórico para que o "voltar" não saia do app
+        document.getElementById('main-app').style.display = 'flex';
         history.pushState({ page: 'main' }, "Master Check", ""); 
-    } else { 
-        alert("E-mail não autorizado!"); 
+    } else { alert("Acesso não autorizado. Verifique seu e-mail da Kiwify."); }
+}
+
+function runCheck() {
+    const input = document.getElementById('cep-input').value;
+    const res = document.getElementById('result-display');
+    const area = document.getElementById('dynamic-script-area');
+    const text = document.getElementById('script-text');
+
+    if (!input) return alert("Digite um CEP!");
+    res.style.display = "block";
+
+    if (input.startsWith('7')) {
+        res.style.background = "#d4edda"; res.style.color = "#155724";
+        res.innerHTML = '<i class="fas fa-truck-loading"></i> LOGZZ: Pagamento na Entrega';
+        text.innerText = scripts.logzz;
+    } else {
+        res.style.background = "#f8d7da"; res.style.color = "#721c24";
+        res.innerHTML = '<i class="fas fa-shipping-fast"></i> BRAIP: Envio Nacional';
+        text.innerText = scripts.braip;
     }
+    area.style.display = 'block';
 }
 
-function showTab(id) {
-    document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+function showTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    // Adiciona a aba ao histórico do navegador
-    history.pushState({ page: id }, "Master Check", ""); 
+    btn.classList.add('active');
+    history.pushState({ page: id }, "Master Check", "");
 }
 
-// Escuta o botão "voltar" do celular
 window.onpopstate = function(event) {
     if (event.state && event.state.page) {
-        if (event.state.page === 'main') {
-            // Se voltar para o marco inicial, mostra a primeira aba
-            showTab('tab-cep'); 
-        } else {
-            // Volta para a aba específica registrada no histórico
-            showTab(event.state.page);
-        }
-    } else {
-        // Se não houver mais histórico interno, o navegador sai da página (comportamento padrão)
-        location.reload(); 
+        if (event.state.page === 'main') showTab('tab-cep', document.querySelector('.nav-btn'));
+        else showTab(event.state.page, Array.from(document.querySelectorAll('.nav-btn')).find(b => b.innerText.includes("Consultar")));
     }
 };
 
-// Funções de CEP e Cópia continuam as mesmas...
-function runCheck() { /* ... */ }
-function copyToClipboard(key) { /* ... */ }
+function copyToClipboard(key) {
+    navigator.clipboard.writeText(scripts[key]);
+    alert("Script copiado para o WhatsApp!");
+}
+
+function copyDynamic() {
+    const text = document.getElementById('script-text').innerText;
+    navigator.clipboard.writeText(text);
+    alert("Script de fechamento copiado!");
+}
+
