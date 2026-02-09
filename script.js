@@ -7,7 +7,7 @@ const scripts = {
 };
 
 function checkAccess() {
-    const email = document.getElementById('user-email').value.toLowerCase();
+    const email = document.getElementById('user-email').value.toLowerCase().trim();
     if (whitelist.includes(email)) {
         document.getElementById('login-screen').classList.remove('active');
         document.getElementById('main-app').classList.add('active');
@@ -52,3 +52,4 @@ function copyToClipboard(key) {
     navigator.clipboard.writeText(scripts[key]);
     alert("Script copiado!");
 }
+
