@@ -29,4 +29,4 @@ input, .select-field { width: 100%; padding: 12px; border: 1.5px solid #eee; bor
 .nav-btn.active { color: var(--primary); }
 
 @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-.pulse-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: pulse 1.5s infinite; }
+.pulse-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: pulse 1.5s infinite; } 
