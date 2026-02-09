@@ -2,64 +2,94 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Check Beta - Método TH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Master Check - Método TH</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="app-container">
-        <div id="login-screen" class="screen">
-            <div class="login-box">
-                <img src="img/logo.png" alt="Método TH" style="width: 80px; margin-bottom: 20px;">
-                <h2>🔓 Acesso Exclusivo</h2>
-                <p>Insira seu e-mail de compra da Kiwify para liberar as ferramentas de venda.</p>
-                <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
-                <button class="btn-primary" onclick="checkAccess()">Desbloquear App</button>
+    <div class="app-viewport">
+        <section id="login-screen" class="active-screen">
+            <div class="login-container">
+                <div class="brand">
+                    <div class="logo-circle"><i class="fas fa-rocket"></i></div>
+                    <h1>Método TH</h1>
+                    <p>Escala Brasil 360°</p>
+                </div>
+                <div class="login-card">
+                    <p class="login-instruction">Insira o e-mail da Kiwify para desbloquear</p>
+                    <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
+                    <button class="btn-main" onclick="checkAccess()">Desbloquear App <i class="fas fa-unlock"></i></button>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div id="main-app" class="screen" style="display: none;">
-            <header class="app-header">MASTER CHECK BETA</header>
-            
-            <section id="tab-cep" class="tab-page active">
-                <h3>🔍 Consultar Logística</h3>
-                <p>Cole o CEP ou endereço completo (via Google Maps) abaixo:</p>
-                <input type="text" id="cep-input" placeholder="00000-000 ou Endereço Bruto">
-                <button class="btn-primary" onclick="runCheck()">Verificar Cobertura</button>
-                <div id="result-display" class="result-box"></div>
-            </section>
+        <main id="main-app" style="display: none;">
+            <header class="main-header">
+                <span class="status-dot"></span>
+                <span>MASTER CHECK BETA</span>
+                <i class="fas fa-user-circle"></i>
+            </header>
 
-            <section id="tab-atendimento" class="tab-page">
-                <h3>📱 Scripts de Fechamento</h3>
-                <div class="script-item">
-                    <span><b>🎁 Brinde 1 (3 Frascos)</b></span>
-                    <button class="btn-copy" onclick="copyToClipboard('kit3')">Copiar</button>
-                </div>
-                <div class="script-item highlight">
-                    <span><b>🎁 BRINDE DUPLO (4 por 2)</b></span>
-                    <button class="btn-copy" onclick="copyToClipboard('kit4')">Copiar</button>
-                </div>
-                <div class="script-item">
-                    <span><b>🚚 Fechamento Logzz</b></span>
-                    <button class="btn-copy" onclick="copyToClipboard('logzz')">Copiar</button>
-                </div>
-            </section>
+            <div class="content-area">
+                <section id="tab-cep" class="tab-content active">
+                    <div class="card">
+                        <h3><i class="fas fa-search-location"></i> Verificar Logística</h3>
+                        <p class="card-desc">Cole o endereço ou CEP do Google Maps:</p>
+                        <div class="search-group">
+                            <input type="text" id="cep-input" placeholder="Ex: 75131-706">
+                            <button class="btn-action" onclick="runCheck()"><i class="fas fa-check"></i></button>
+                        </div>
+                        <div id="result-display" class="result-badge"></div>
+                    </div>
 
-            <section id="tab-config" class="tab-page">
-                <h3>🚀 Configuração de Vendas</h3>
-                <p>Siga o passo a passo para vender em até 9 dias:</p>
-                <div class="image-placeholder">
-                    <img src="img/print-anuncio.png" alt="Print Anúncio FB Ads">
-                    <p><i>Configuração: Mulheres 35-65+ anos</i></p>
-                </div>
-            </section>
+                    <div id="dynamic-script-area" class="script-reveal" style="display: none;">
+                        <div class="script-card">
+                            <div class="script-header">
+                                <span><i class="fas fa-comment-dots"></i> Script Recomendado</span>
+                                <span class="badge-copy" onclick="copyDynamic()">Copiar</span>
+                            </div>
+                            <p id="script-text"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-atendimento" class="tab-content">
+                    <h3>Biblioteca de Scripts</h3>
+                    <div class="script-list">
+                        <div class="script-box gold" onclick="copyToClipboard('kit4')">
+                            <b>BRINDE DUPLO (4 por 2)</b>
+                            <i class="far fa-copy"></i>
+                        </div>
+                        <div class="script-box" onclick="copyToClipboard('kit3')">
+                            <b>PAGUE 2 LEVE 3</b>
+                            <i class="far fa-copy"></i>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-config" class="tab-content">
+                    <h3>Configuração Facebook Ads</h3>
+                    <div class="fb-instruction">
+                        <img src="img/print-anuncio.png" alt="Configuração de Anúncios" class="print-img">
+                        <div class="check-item"><i class="fas fa-check-circle"></i> Mulheres: 35 - 65+ anos</div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i> Objetivo: Engajamento/WhatsApp</div>
+                    </div>
+                </section>
+            </div>
 
             <nav class="bottom-nav">
-                <button onclick="showTab('tab-cep')">Consultar</button>
-                <button onclick="showTab('tab-atendimento')">Scripts</button>
-                <button onclick="showTab('tab-config')">Facebook Ads</button>
+                <button class="nav-btn active" onclick="showTab('tab-cep', this)">
+                    <i class="fas fa-search"></i><span>Consultar</span>
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-atendimento', this)">
+                    <i class="fas fa-comments"></i><span>Scripts</span>
+                </button>
+                <button class="nav-btn" onclick="showTab('tab-config', this)">
+                    <i class="fab fa-facebook-f"></i><span>FB Ads</span>
+                </button>
             </nav>
-        </div>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
