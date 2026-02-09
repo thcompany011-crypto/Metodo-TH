@@ -8,90 +8,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="app-viewport">
-        <section id="login-screen" class="active-screen">
-            <div class="login-container">
+    <div class="app-shell">
+        <section id="login-screen" class="screen active">
+            <div class="login-box">
                 <div class="brand">
-                    <div class="logo-circle"><i class="fas fa-rocket"></i></div>
+                    <i class="fas fa-shield-halved"></i>
                     <h1>Método TH</h1>
-                    <p>Escala Brasil 360°</p>
+                    <span>Escala Brasil 360°</span>
                 </div>
-                <div class="login-card">
-                    <p class="login-instruction">Insira o e-mail da Kiwify para desbloquear</p>
-                    <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
-                    <button class="btn-main" onclick="checkAccess()">Desbloquear App <i class="fas fa-unlock"></i></button>
+                <div class="form-card">
+                    <p>Valide seu acesso de aluno:</p>
+                    <input type="email" id="user-email" placeholder="e-mail da Kiwify">
+                    <button class="btn-primary" onclick="checkAccess()">Desbloquear Ferramentas <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>
 
-        <main id="main-app" style="display: none;">
-            <header class="main-header">
-                <span class="status-dot"></span>
-                <span>MASTER CHECK BETA</span>
-                <i class="fas fa-user-circle"></i>
+        <main id="main-app" class="screen">
+            <header class="app-bar">
+                <div class="user-info"><i class="fas fa-circle-check"></i> <span>Acesso Ativo</span></div>
+                <div class="app-title">MASTER CHECK PRO</div>
+                <i class="fas fa-bars"></i>
             </header>
 
-            <div class="content-area">
-                <section id="tab-cep" class="tab-content active">
-                    <div class="card">
-                        <h3><i class="fas fa-search-location"></i> Verificar Logística</h3>
-                        <p class="card-desc">Cole o endereço ou CEP do Google Maps:</p>
-                        <div class="search-group">
-                            <input type="text" id="cep-input" placeholder="Ex: 75131-706">
-                            <button class="btn-action" onclick="runCheck()"><i class="fas fa-check"></i></button>
+            <div class="main-content">
+                <div id="tab-cep" class="tab-pane active">
+                    <div class="card search-card">
+                        <h3><i class="fas fa-location-crosshairs"></i> Triagem Logística</h3>
+                        <div class="input-group">
+                            <input type="text" id="cep-input" placeholder="Cole o CEP ou Endereço...">
+                            <button onclick="runCheck()"><i class="fas fa-magnifying-glass"></i></button>
                         </div>
-                        <div id="result-display" class="result-badge"></div>
+                        <div id="result-display" class="status-badge"></div>
                     </div>
 
-                    <div id="dynamic-script-area" class="script-reveal" style="display: none;">
-                        <div class="script-card">
-                            <div class="script-header">
-                                <span><i class="fas fa-comment-dots"></i> Script Recomendado</span>
-                                <span class="badge-copy" onclick="copyDynamic()">Copiar</span>
+                    <div id="dynamic-script-area" class="script-reveal">
+                        <div class="card script-card">
+                            <div class="card-header">
+                                <span><i class="fas fa-bolt"></i> Script de Resposta</span>
+                                <button class="mini-copy" onclick="copyDynamic()">Copiar</button>
                             </div>
                             <p id="script-text"></p>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <section id="tab-atendimento" class="tab-content">
-                    <h3>Biblioteca de Scripts</h3>
-                    <div class="script-list">
-                        <div class="script-box gold" onclick="copyToClipboard('kit4')">
+                <div id="tab-atendimento" class="tab-pane">
+                    <h3 class="section-title">Scripts de Alta Conversão</h3>
+                    <div class="script-grid">
+                        <div class="card script-item gold" onclick="copyToClipboard('kit4')">
                             <b>BRINDE DUPLO (4 por 2)</b>
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-fire"></i>
                         </div>
-                        <div class="script-box" onclick="copyToClipboard('kit3')">
+                        <div class="card script-item" onclick="copyToClipboard('kit3')">
                             <b>PAGUE 2 LEVE 3</b>
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-box-open"></i>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <section id="tab-config" class="tab-content">
-                    <h3>Configuração Facebook Ads</h3>
-                    <div class="fb-instruction">
-                        <img src="img/print-anuncio.png" alt="Configuração de Anúncios" class="print-img">
-                        <div class="check-item"><i class="fas fa-check-circle"></i> Mulheres: 35 - 65+ anos</div>
-                        <div class="check-item"><i class="fas fa-check-circle"></i> Objetivo: Engajamento/WhatsApp</div>
+                <div id="tab-config" class="tab-pane">
+                    <h3 class="section-title">Configuração FB Ads</h3>
+                    <div class="card ads-card">
+                        <img src="img/print-anuncio.png" alt="Anúncio" class="ads-preview">
+                        <ul class="ads-list">
+                            <li><i class="fas fa-users"></i> Mulheres: 35-65+</li>
+                            <li><i class="fas fa-bullseye"></i> Objetivo: Engajamento</li>
+                        </ul>
                     </div>
-                </section>
+                </div>
             </div>
 
-            <nav class="bottom-nav">
-                <button class="nav-btn active" onclick="showTab('tab-cep', this)">
-                    <i class="fas fa-search"></i><span>Consultar</span>
-                </button>
-                <button class="nav-btn" onclick="showTab('tab-atendimento', this)">
-                    <i class="fas fa-comments"></i><span>Scripts</span>
-                </button>
-                <button class="nav-btn" onclick="showTab('tab-config', this)">
-                    <i class="fab fa-facebook-f"></i><span>FB Ads</span>
-                </button>
+            <nav class="tab-bar">
+                <button class="nav-item active" onclick="showTab('tab-cep', this)"><i class="fas fa-house"></i><span>Home</span></button>
+                <button class="nav-item" onclick="showTab('tab-atendimento', this)"><i class="fas fa-message"></i><span>Scripts</span></button>
+                <button class="nav-item" onclick="showTab('tab-config', this)"><i class="fas fa-chart-line"></i><span>Trafégo</span></button>
             </nav>
         </main>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-
