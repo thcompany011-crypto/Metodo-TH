@@ -8,99 +8,109 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <div class="app-shell">
+    <div class="app-viewport">
         <section id="login-screen" class="screen active">
-            <div class="login-wrapper">
-                <div class="brand-section">
-                    <div class="logo-icon"><i data-lucide="shield-check"></i></div>
+            <div class="login-inner">
+                <div class="brand-box">
+                    <div class="logo-orb"><i data-lucide="shield-check"></i></div>
                     <h1>MÉTODO TH</h1>
-                    <p>Escala Brasil 360°</p>
+                    <p>Inteligência Brasil 360°</p>
                 </div>
-                <div class="login-card">
+                <div class="glass-card login-form">
                     <label>Acesso do Aluno Kiwify</label>
                     <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
-                    <button class="btn-primary" onclick="checkAccess()">
-                        Desbloquear App <i data-lucide="chevron-right"></i>
+                    <button class="btn-main" onclick="checkAccess()">
+                        Entrar no Dashboard <i data-lucide="arrow-right"></i>
                     </button>
                 </div>
             </div>
         </section>
 
         <main id="main-app" class="screen">
-            <header class="app-header">
-                <div class="header-status"><span class="pulse-dot"></span> SISTEMA ATIVO</div>
-                <div class="header-title">MASTER CHECK PRO</div>
-                <div class="header-user"><i data-lucide="user-circle"></i></div>
+            <header class="navbar">
+                <div class="nav-status"><span class="live-indicator"></span> SISTEMA ONLINE</div>
+                <div class="nav-brand">MASTER CHECK PRO</div>
+                <div class="nav-profile"><i data-lucide="user-circle"></i></div>
             </header>
 
-            <div class="app-body">
-                <div id="tab-cep" class="tab-pane active">
-                    <div class="card search-card">
-                        <div class="card-title"><i data-lucide="map-pin"></i> <span>Triagem Logística</span></div>
-                        <div class="search-field">
-                            <input type="text" id="cep-input" placeholder="Digite o CEP ou Endereço">
-                            <button onclick="runCheck()"><i data-lucide="search"></i></button>
+            <div class="main-container">
+                <section id="tab-cep" class="pane active">
+                    <div class="card">
+                        <div class="card-header">
+                            <i data-lucide="map-pin"></i> <span>Triagem Logística</span>
                         </div>
-                        <div id="result-display" class="result-badge"></div>
+                        <div class="search-wrap">
+                            <input type="text" id="cep-input" placeholder="Digite o CEP ou Endereço">
+                            <button class="btn-search" onclick="runCheck()"><i data-lucide="search"></i></button>
+                        </div>
+                        <div id="result-display" class="badge-result"></div>
                     </div>
 
-                    <div id="dynamic-script-area" class="reveal-animation" style="display: none;">
-                        <div class="card script-response">
-                            <div class="script-header">
-                                <span><i data-lucide="message-square-plus"></i> Script de Fechamento</span>
-                                <button class="btn-copy-mini" onclick="copyDynamic()">Copiar Script</button>
+                    <div id="dynamic-script-area" class="reveal" style="display: none;">
+                        <div class="card script-card">
+                            <div class="card-top">
+                                <span><i data-lucide="message-square"></i> Script de Venda</span>
+                                <button class="btn-copy" onclick="copyDynamic()">Copiar</button>
                             </div>
                             <p id="script-text"></p>
                         </div>
 
-                        <div id="logzz-form" class="card scheduling-card" style="display: none;">
-                            <div class="card-title"><i data-lucide="calendar-check"></i> Dados para o Entregador</div>
-                            <div class="form-grid">
+                        <div id="logzz-form" class="card form-card" style="display: none;">
+                            <div class="card-header"><i data-lucide="calendar-check"></i> Dados do Entregador</div>
+                            <div class="grid-inputs">
                                 <input type="text" id="cust-num" placeholder="Nº da Casa">
                                 <input type="text" id="cust-ref" placeholder="Ponto de Referência">
                                 <input type="date" id="cust-date">
-                                <select id="cust-period" class="select-field">
+                                <select id="cust-period" class="select-ui">
                                     <option value="Qualquer Horário">Período: Qualquer Horário</option>
                                     <option value="Manhã (08h às 12h)">Manhã (08h às 12h)</option>
                                     <option value="Tarde (13h às 18h)">Tarde (13h às 18h)</option>
                                 </select>
                                 <input type="text" id="cust-obs" placeholder="Observações Extras">
                             </div>
-                            <button class="btn-primary" style="background: #1f2937; margin-top: 15px;" onclick="copyFinalOrder()">
-                                <i data-lucide="copy"></i> Copiar Tudo para Logzz
+                            <button class="btn-action" onclick="copyFinalOrder()">
+                                <i data-lucide="copy"></i> Copiar Guia de Agendamento
                             </button>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div id="tab-atendimento" class="tab-pane">
-                    <div class="section-header">Biblioteca de Scripts</div>
-                    <div class="card script-item gold" onclick="copyToClipboard('kit4')">
-                        <div class="item-text"><b>BRINDE DUPLO (4 por 2)</b><span>Alta Conversão</span></div>
+                <section id="tab-atendimento" class="pane">
+                    <h2 class="section-title">Biblioteca de Kits</h2>
+                    <div class="card script-item premium" onclick="copyToClipboard('kit4')">
+                        <div class="item-info">
+                            <b>BRINDE DUPLO (4 por 2)</b>
+                            <small>Maior conversão em escala</small>
+                        </div>
                         <i data-lucide="copy"></i>
                     </div>
                     <div class="card script-item" onclick="copyToClipboard('kit3')">
-                        <div class="item-text"><b>PAGUE 2 LEVE 3</b><span>Tratamento Completo</span></div>
+                        <div class="item-info">
+                            <b>PAGUE 2 LEVE 3</b>
+                            <small>Tratamento recomendado</small>
+                        </div>
                         <i data-lucide="copy"></i>
                     </div>
-                </div>
+                </section>
 
-                <div id="tab-config" class="tab-pane">
-                    <div class="section-header">Estratégia FB Ads</div>
-                    <div class="card ads-card">
-                        <img src="img/print-anuncio.png" alt="Anúncio" class="ads-img" onerror="this.style.display='none'">
-                        <div class="ads-info">
-                            <p><i data-lucide="users"></i> Mulheres: 35-65+</p>
-                            <p><i data-lucide="target"></i> Objetivo: Engajamento</p>
+                <section id="tab-config" class="pane">
+                    <h2 class="section-title">Estratégia de Tráfego</h2>
+                    <div class="card ads-pro">
+                        <div class="img-frame">
+                            <img src="img/print-anuncio.png" alt="Anúncio" onerror="this.src='https://placehold.co/600x400?text=Pré-visualização+Ads'">
+                        </div>
+                        <div class="ads-specs">
+                            <div class="spec-item"><i data-lucide="users"></i> Mulheres: 35-65+</div>
+                            <div class="spec-item"><i data-lucide="target"></i> Objetivo: WhatsApp</div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
 
-            <nav class="tab-nav">
-                <button class="nav-btn active" onclick="showTab('tab-cep', this)"><i data-lucide="layout-dashboard"></i><span>Triagem</span></button>
-                <button class="nav-btn" onclick="showTab('tab-atendimento', this)"><i data-lucide="messages-square"></i><span>Scripts</span></button>
-                <button class="nav-btn" onclick="showTab('tab-config', this)"><i data-lucide="pie-chart"></i><span>Estratégia</span></button>
+            <nav class="bottom-tab-nav">
+                <button class="tab-item active" onclick="showTab('tab-cep', this)"><i data-lucide="layout-dashboard"></i><span>Triagem</span></button>
+                <button class="tab-item" onclick="showTab('tab-atendimento', this)"><i data-lucide="messages-square"></i><span>Kits</span></button>
+                <button class="tab-item" onclick="showTab('tab-config', this)"><i data-lucide="trending-up"></i><span>Tráfego</span></button>
             </nav>
         </main>
     </div>
@@ -108,4 +118,3 @@
     <script>lucide.createIcons();</script>
 </body>
 </html>
-
