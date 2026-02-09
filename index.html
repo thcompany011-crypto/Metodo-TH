@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Check Beta - Método TH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="login-screen" class="screen">
+            <div class="login-box">
+                <img src="img/logo.png" alt="Método TH" style="width: 80px; margin-bottom: 20px;">
+                <h2>🔓 Acesso Exclusivo</h2>
+                <p>Insira seu e-mail de compra da Kiwify para liberar as ferramentas de venda.</p>
+                <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
+                <button class="btn-primary" onclick="checkAccess()">Desbloquear App</button>
+            </div>
+        </div>
+
+        <div id="main-app" class="screen" style="display: none;">
+            <header class="app-header">MASTER CHECK BETA</header>
+            
+            <section id="tab-cep" class="tab-page active">
+                <h3>🔍 Consultar Logística</h3>
+                <p>Cole o CEP ou endereço completo (via Google Maps) abaixo:</p>
+                <input type="text" id="cep-input" placeholder="00000-000 ou Endereço Bruto">
+                <button class="btn-primary" onclick="runCheck()">Verificar Cobertura</button>
+                <div id="result-display" class="result-box"></div>
+            </section>
+
+            <section id="tab-atendimento" class="tab-page">
+                <h3>📱 Scripts de Fechamento</h3>
+                <div class="script-item">
+                    <span><b>🎁 Brinde 1 (3 Frascos)</b></span>
+                    <button class="btn-copy" onclick="copyToClipboard('kit3')">Copiar</button>
+                </div>
+                <div class="script-item highlight">
+                    <span><b>🎁 BRINDE DUPLO (4 por 2)</b></span>
+                    <button class="btn-copy" onclick="copyToClipboard('kit4')">Copiar</button>
+                </div>
+                <div class="script-item">
+                    <span><b>🚚 Fechamento Logzz</b></span>
+                    <button class="btn-copy" onclick="copyToClipboard('logzz')">Copiar</button>
+                </div>
+            </section>
+
+            <section id="tab-config" class="tab-page">
+                <h3>🚀 Configuração de Vendas</h3>
+                <p>Siga o passo a passo para vender em até 9 dias:</p>
+                <div class="image-placeholder">
+                    <img src="img/print-anuncio.png" alt="Print Anúncio FB Ads">
+                    <p><i>Configuração: Mulheres 35-65+ anos</i></p>
+                </div>
+            </section>
+
+            <nav class="bottom-nav">
+                <button onclick="showTab('tab-cep')">Consultar</button>
+                <button onclick="showTab('tab-atendimento')">Scripts</button>
+                <button onclick="showTab('tab-config')">Facebook Ads</button>
+            </nav>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
