@@ -3,118 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Master Check PRO - Método TH</title>
+    <title>Método TH - Escala 360°</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="app-viewport">
-        <section id="login-screen" class="screen active">
-            <div class="login-inner">
-                <div class="brand-box">
-                    <div class="logo-orb"><i data-lucide="shield-check"></i></div>
-                    <h1>MÉTODO TH</h1>
-                    <p>Inteligência Brasil 360°</p>
-                </div>
-                <div class="glass-card login-form">
-                    <label>Acesso do Aluno Kiwify</label>
-                    <input type="email" id="user-email" placeholder="seu-email@exemplo.com">
-                    <button class="btn-main" onclick="checkAccess()">
-                        Entrar no Dashboard <i data-lucide="arrow-right"></i>
-                    </button>
-                </div>
+
+    <section id="screen-login" class="app-screen active">
+        <div class="login-wrapper">
+            <div class="brand-header">
+                <img src="1001277999.png" alt="Método TH" class="main-logo">
             </div>
-        </section>
+            <div class="premium-card login-card">
+                <h2>ACESSO DO ALUNO</h2>
+                <p>Validação via Kiwify</p>
+                <div class="input-group">
+                    <label>E-mail de Compra</label>
+                    <input type="email" id="user-email" placeholder="seuemail@exemplo.com">
+                </div>
+                <button onclick="tentarLogin()" class="btn-gold">LIBERAR ACESSO 360°</button>
+                <div id="login-msg" class="feedback-msg"></div>
+                <span class="device-lock-info">🔒 Vinculado a este dispositivo</span>
+            </div>
+        </div>
+    </section>
 
-        <main id="main-app" class="screen">
-            <header class="navbar">
-                <div class="nav-status"><span class="live-indicator"></span> SISTEMA ONLINE</div>
-                <div class="nav-brand">MASTER CHECK PRO</div>
-                <div class="nav-profile"><i data-lucide="user-circle"></i></div>
-            </header>
+    <section id="screen-dashboard" class="app-screen">
+        <header class="internal-header">
+            <div class="user-info">
+                <span id="display-email">aluno@metodoth.com</span>
+                <small>Plano Escala Brasil 360°</small>
+            </div>
+            <img src="1001277999.png" alt="TH" class="mini-logo">
+        </header>
 
-            <div class="main-container">
-                <section id="tab-cep" class="pane active">
-                    <div class="card">
-                        <div class="card-header">
-                            <i data-lucide="map-pin"></i> <span>Triagem Logística</span>
-                        </div>
-                        <div class="search-wrap">
-                            <input type="text" id="cep-input" placeholder="Digite o CEP ou Endereço">
-                            <button class="btn-search" onclick="runCheck()"><i data-lucide="search"></i></button>
-                        </div>
-                        <div id="result-display" class="badge-result"></div>
-                    </div>
-
-                    <div id="dynamic-script-area" class="reveal" style="display: none;">
-                        <div class="card script-card">
-                            <div class="card-top">
-                                <span><i data-lucide="message-square"></i> Script de Venda</span>
-                                <button class="btn-copy" onclick="copyDynamic()">Copiar</button>
-                            </div>
-                            <p id="script-text"></p>
-                        </div>
-
-                        <div id="logzz-form" class="card form-card" style="display: none;">
-                            <div class="card-header"><i data-lucide="calendar-check"></i> Dados do Entregador</div>
-                            <div class="grid-inputs">
-                                <input type="text" id="cust-num" placeholder="Nº da Casa">
-                                <input type="text" id="cust-ref" placeholder="Ponto de Referência">
-                                <input type="date" id="cust-date">
-                                <select id="cust-period" class="select-ui">
-                                    <option value="Qualquer Horário">Período: Qualquer Horário</option>
-                                    <option value="Manhã (08h às 12h)">Manhã (08h às 12h)</option>
-                                    <option value="Tarde (13h às 18h)">Tarde (13h às 18h)</option>
-                                </select>
-                                <input type="text" id="cust-obs" placeholder="Observações Extras">
-                            </div>
-                            <button class="btn-action" onclick="copyFinalOrder()">
-                                <i data-lucide="copy"></i> Copiar Guia de Agendamento
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="tab-atendimento" class="pane">
-                    <h2 class="section-title">Biblioteca de Kits</h2>
-                    <div class="card script-item premium" onclick="copyToClipboard('kit4')">
-                        <div class="item-info">
-                            <b>BRINDE DUPLO (4 por 2)</b>
-                            <small>Maior conversão em escala</small>
-                        </div>
-                        <i data-lucide="copy"></i>
-                    </div>
-                    <div class="card script-item" onclick="copyToClipboard('kit3')">
-                        <div class="item-info">
-                            <b>PAGUE 2 LEVE 3</b>
-                            <small>Tratamento recomendado</small>
-                        </div>
-                        <i data-lucide="copy"></i>
-                    </div>
-                </section>
-
-                <section id="tab-config" class="pane">
-                    <h2 class="section-title">Estratégia de Tráfego</h2>
-                    <div class="card ads-pro">
-                        <div class="img-frame">
-                            <img src="img/print-anuncio.png" alt="Anúncio" onerror="this.src='https://placehold.co/600x400?text=Pré-visualização+Ads'">
-                        </div>
-                        <div class="ads-specs">
-                            <div class="spec-item"><i data-lucide="users"></i> Mulheres: 35-65+</div>
-                            <div class="spec-item"><i data-lucide="target"></i> Objetivo: WhatsApp</div>
-                        </div>
-                    </div>
-                </section>
+        <main class="internal-content">
+            <div class="welcome-text">
+                <h1>Painel de Escala</h1>
+                <p>O que vamos validar hoje?</p>
             </div>
 
-            <nav class="bottom-tab-nav">
-                <button class="tab-item active" onclick="showTab('tab-cep', this)"><i data-lucide="layout-dashboard"></i><span>Triagem</span></button>
-                <button class="tab-item" onclick="showTab('tab-atendimento', this)"><i data-lucide="messages-square"></i><span>Kits</span></button>
-                <button class="tab-item" onclick="showTab('tab-config', this)"><i data-lucide="trending-up"></i><span>Tráfego</span></button>
-            </nav>
+            <div class="tools-grid">
+                <div class="tool-card" onclick="irPara('screen-logzz')">
+                    <i class="fas fa-map-location-dot"></i>
+                    <h3>Master Check</h3>
+                    <p>Validar áreas de entrega</p>
+                </div>
+                <div class="tool-card" onclick="irPara('screen-drive')">
+                    <i class="fas fa-route"></i>
+                    <h3>Fluxo de Vendas</h3>
+                    <p>IA para Scripts do Drive</p>
+                </div>
+            </div>
         </main>
-    </div>
+    </section>
+
+    <section id="screen-logzz" class="app-screen">
+        <nav class="back-nav">
+            <button onclick="voltar()"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <span>Master Check Logzz</span>
+        </nav>
+        <div class="internal-content">
+            <div class="premium-card">
+                <h3>Link do Produto</h3>
+                <input type="text" id="logzz-link" placeholder="Cole seu link de afiliado Logzz">
+                <button onclick="validarLogzz()" class="btn-gold">IDENTIFICAR ÁREAS</button>
+            </div>
+            <div id="logzz-result"></div>
+        </div>
+    </section>
+
+    <section id="screen-drive" class="app-screen">
+        <nav class="back-nav">
+            <button onclick="voltar()"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <span>Gerador de Fluxo</span>
+        </nav>
+        <div class="internal-content">
+            <div class="premium-card">
+                <h3>Material do Produtor</h3>
+                <input type="text" id="drive-link" placeholder="Cole o link do Drive">
+                <button onclick="gerarFluxoDrive()" class="btn-gold">MONTAR ESTRUTURA</button>
+            </div>
+            <div id="drive-result"></div>
+        </div>
+    </section>
+
     <script src="script.js"></script>
-    <script>lucide.createIcons();</script>
 </body>
 </html>
+
